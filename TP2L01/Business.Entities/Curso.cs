@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Entities
 {
-    public class Curso
+    public class Curso : BusinessEntity
     {
         private int AnioCalendario;
         private int Cupo;

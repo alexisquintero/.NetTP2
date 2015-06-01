@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Entities
 {
-    public class Plan
+    public class Plan : BusinessEntity
     {
         private string Descripcion;
         private int IDEspecialidad;
