@@ -8,6 +8,7 @@ namespace Business.Entities
 {
     public class Modulo : BusinessEntity
     {
-        private string Descripcion;
+        public string Descripcion { get; set; }
     }
+
 }

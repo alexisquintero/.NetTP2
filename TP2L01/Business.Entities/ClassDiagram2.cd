@@ -3,12 +3,15 @@
   <Class Name="Business.Entities.AlumnoInscripcion">
     <Position X="0.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACACAAAAAgAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAACAAAAAgAAAAAAAAAAAAAAAAAEIAAAAA=</HashCode>
       <FileName>AlumnoInscripcion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.BusinessEntity">
     <Position X="9.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
       <Enum Name="Business.Entities.BusinessEntity.States" Collapsed="true">
         <TypeIdentifier>
@@ -17,19 +20,20 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAABCAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>BusinessEntity.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Business.Entities.Comision" Collapsed="true">
-    <Position X="13.75" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Comision.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.Curso">
     <Position X="18.25" Y="6" Width="1.5" />
+    <InheritanceLine Type="Business.Entities.BusinessEntity" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="3.229" />
+        <Point X="10.25" Y="5.4" />
+        <Point X="19" Y="5.4" />
+        <Point X="19" Y="6" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAIAAIAAIAAAAAACAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Curso.cs</FileName>
@@ -50,7 +54,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.Materia">
-    <Position X="11.5" Y="5.75" Width="1.5" />
+    <Position X="9" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAwA=</HashCode>
       <FileName>Materia.cs</FileName>
@@ -78,17 +82,40 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.Plan">
-    <Position X="16.25" Y="6.75" Width="1.5" />
+    <Position X="14" Y="6.25" Width="1.5" />
+    <InheritanceLine Type="Business.Entities.BusinessEntity" ManuallyRouted="true">
+      <Path>
+        <Point X="10.25" Y="3.229" />
+        <Point X="10.25" Y="5.34" />
+        <Point X="14.75" Y="5.34" />
+        <Point X="14.75" Y="6.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Plan.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.Usuario">
-    <Position X="21" Y="4.75" Width="1.5" />
+    <Position X="21.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAEAAAAgAAAAAAAABAAAIAAAAAAEAA=</HashCode>
       <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Comision">
+    <Position X="10.75" Y="6.5" Width="2.5" />
+    <InheritanceLine Type="Business.Entities.BusinessEntity" ManuallyRouted="true">
+      <Path>
+        <Point X="10.25" Y="3.229" />
+        <Point X="10.25" Y="5.351" />
+        <Point X="12" Y="5.351" />
+        <Point X="12" Y="6.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Comision.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

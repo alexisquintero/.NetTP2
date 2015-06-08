@@ -8,14 +8,14 @@ namespace Business.Entities
 {
     public class Personas : BusinessEntity
     {
-        private string Apellido;
-        private string Direccion;
-        private string Email;
-        private DateTime FechaNacimiento;
-        private int IDPlan;
-        private int Legajo;
-        private int Nombre;
-        private string Telefono;
-        private TiposPersonas TipoPersona;
+        public string Apellido { get; set; }
+        public string Direccion { get; set; }
+        public string Email { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public int IDPlan { get; set; }
+        public int Legajo { get; set; }
+        public string Nombre { get; set; }
+        public string Telefono { get; set; }
+        public TiposPersonas TipoPersona { get; set; }
     }
 }

@@ -10,23 +10,10 @@ namespace Business.Entities
     {
         public BusinessEntity ()
         {
-            this.State = states.New;
+            this.State = State.New;
         }
-
-       private int _ID;
-        public int ID
-   
-    {
-        get { return _ID; }
-        set { _ID = value}
-      
-    }
-        private States _State;
-        public States State
-        {
-            get { return _State; }
-            set { _State = value; }
-        }
+        public int ID { get; set; }
+        public States State { get; set; }
         public enum States
         { Deleted,
         New,
