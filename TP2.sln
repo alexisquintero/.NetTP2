@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "TP2L01\Util\Util.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Entities", "TP2L01\Business.Entities\Business.Entities.csproj", "{439C4D31-1F43-415F-B93D-A8AC57370FC2}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI.Web(1)", "http://localhost:59873", "{93AFE268-F265-4A1D-976C-B1DD78B75D0A}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI.Web(6)", "http://localhost:59873", "{93AFE268-F265-4A1D-976C-B1DD78B75D0A}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
@@ -32,6 +32,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI.Web(1)", "http://localho
 		SlnRelativePath = "TP2L01\UI.Web\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Database", "Data.Database\Data.Database\Data.Database.csproj", "{18D1C50F-58E0-4D94-B05B-4A95A146E6BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{93AFE268-F265-4A1D-976C-B1DD78B75D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93AFE268-F265-4A1D-976C-B1DD78B75D0A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{93AFE268-F265-4A1D-976C-B1DD78B75D0A}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{18D1C50F-58E0-4D94-B05B-4A95A146E6BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18D1C50F-58E0-4D94-B05B-4A95A146E6BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18D1C50F-58E0-4D94-B05B-4A95A146E6BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18D1C50F-58E0-4D94-B05B-4A95A146E6BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
