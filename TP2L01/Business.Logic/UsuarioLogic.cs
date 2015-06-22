@@ -8,13 +8,13 @@ using Business.Entities;
 
 namespace Business.Logic
 {
-    class UsuarioLogic : BusinessLogic 
+    public class UsuarioLogic : BusinessLogic 
     {
         private UsuarioAdapter UsuarioData { get; set; } 
 
         public UsuarioLogic()
         {
-           UsuarioAdapter UsuarioData = new UsuarioAdapter();
+          UsuarioData = new UsuarioAdapter();
         }
         public Usuario GetOne(int id) {
             return UsuarioData.GetOne(id);

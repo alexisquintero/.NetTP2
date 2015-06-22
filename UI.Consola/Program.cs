@@ -10,8 +10,14 @@ namespace UI.Consola
     {
         static void Main(string[] args)
         {
-            new Usuarios().Menu();
-            //Esta escrito asi tp2 3.4 paso 9
+            Usuarios u = new Usuarios();
+            u.menu();
+            Console.ReadLine();
+            
+    
+
+            // new Usuarios().Menu();
+            //Esta escrito asi tp2 3.4 paso 9 pero da error.
         }
     }
 }

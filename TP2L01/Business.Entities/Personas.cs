@@ -18,4 +18,6 @@ namespace Business.Entities
         public string Telefono { get; set; }
         public TiposPersonas TipoPersona { get; set; }
     }
+
+    public enum TiposPersonas { }
 }

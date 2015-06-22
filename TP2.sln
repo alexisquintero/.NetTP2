@@ -11,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "TP2L01\Util\Util.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Entities", "TP2L01\Business.Entities\Business.Entities.csproj", "{439C4D31-1F43-415F-B93D-A8AC57370FC2}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI.Web(3)", "http://localhost:59873", "{93AFE268-F265-4A1D-976C-B1DD78B75D0A}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI.Web(6)", "http://localhost:59873", "{93AFE268-F265-4A1D-976C-B1DD78B75D0A}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		ProjectReferences = "{439c4d31-1f43-415f-b93d-a8ac57370fc2}|Business.Entities.dll;{2d7f67f0-a515-496e-94f2-7dbedd0b479e}|Business.Logic.dll;"
+		ProjectReferences = "{439c4d31-1f43-415f-b93d-a8ac57370fc2}|Business.Entities.dll;{2d7f67f0-a515-496e-94f2-7dbedd0b479e}|Business.Logic.dll;{18D1C50F-58E0-4D94-B05B-4A95A146E6BB}|Data.Database.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_59873"
 		Debug.AspNetCompiler.PhysicalPath = "TP2L01\UI.Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59873\"

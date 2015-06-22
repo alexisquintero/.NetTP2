@@ -10,8 +10,12 @@ namespace UI.Consola
 {
    public class Usuarios
     {
-       private UsuarioLogic UsuarioNegocio { get; set; }
+       public UsuarioLogic UsuarioNegocio { get; set; }
+
        public void menu() {
+
+           UsuarioNegocio = new UsuarioLogic();
+
            Console.WriteLine("M E N U");
            Console.WriteLine("1 - Listado General");
            Console.WriteLine("2 - Consulta");
@@ -28,10 +32,10 @@ namespace UI.Consola
                resp = int.Parse(Console.ReadLine());
            }
 
-           switch (resp)
-               case 1: ListadoGeneral();
+           switch (resp){
+               case 1: ListadoGeneral(); 
                    break;
-               case 2: Consultar();
+               case 2: Consultar();;
                    break;
                case 3: Agregar();
                    break;
@@ -39,7 +43,8 @@ namespace UI.Consola
                    break;
                case 5: Eliminar();
                    break;
-               case 6: break;
+               case 6: break;}
+       }
 
 
             public void ListadoGeneral()
@@ -82,7 +87,7 @@ namespace UI.Consola
             u1.Clave = Console.ReadLine();
             Console.WriteLine("Ingrese email de un nuevo usuario");
             u1.Email = Console.ReadLine();
-            UsuarioNegocio.save(u1);
+            UsuarioNegocio.Save(u1);
        }
        
        public void Modificar()
@@ -104,4 +109,4 @@ namespace UI.Consola
 
 
     }
-}
+

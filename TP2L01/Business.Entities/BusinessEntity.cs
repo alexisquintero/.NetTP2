@@ -10,7 +10,7 @@ namespace Business.Entities
     {
         public BusinessEntity ()
         {
-            this.State = State.New;
+            this.State = States.New;
         }
         public int ID { get; set; }
         public States State { get; set; }
