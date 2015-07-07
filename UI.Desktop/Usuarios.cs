@@ -17,6 +17,7 @@ namespace UI.Desktop
         public Usuarios()
         {
             InitializeComponent();
+            this.dgvUsuarios.AutoGenerateColumns = false;
         }
 
         private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
