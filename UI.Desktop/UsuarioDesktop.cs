@@ -105,20 +105,25 @@ namespace UI.Desktop
         }
         public virtual bool Validar() {
 
+            bool valido;
+
             if (this.txtID.Text == "" || this.txtApellido.Text == "" || this.txtNombre.Text == "" || this.txtEmail.Text == "" || this.txtUsuario.Text == "" ||
                 this.txtClave.Text == "" || this.txtConfirmarClave.Text == "")
             {
 //TODO: agregar parámetros                this.Notificar();
+                valido = false;
             };
 
             if (this.txtClave.Text.Length < 8)
             {
 //TODO: agregar parámetros                this.Notificar();
+                valido = false;
             }
 
             if(this.txtClave.Text != this.txtConfirmarClave.Text )
             {
 //TODO: agregar parámetros                this.Notificar();
+                valido = false;
             }
 
             bool emailValido = false;  
@@ -132,7 +137,12 @@ namespace UI.Desktop
             matches = rgx.Matches(this.txtEmail.Text);
             if (matches.Count == 1)
             {
-                emailValido = true;
+                valido = true;
+            }
+            else   // email invalido
+            {
+//TODO: agregar parámetros                this.Notificar();
+                valido = false;
             }
 
 
@@ -146,7 +156,7 @@ namespace UI.Desktop
                     {
                         if(cadenas[1].Length == 3)  // 3 caracteres despues del punto; .com, .edu, etc.
                         {
-                            emailValido = true;
+                            valido = true;
                         }
                     }
                     if(cadenas.Length == 3)  // 2 puntos despues del @
@@ -155,7 +165,7 @@ namespace UI.Desktop
                         {
                             if (cadenas[2].Length == 2)  // 2 caracteres despues del segundo punto; .ar, .it, etc.
                             {
-                                emailValido = true;
+                                valido = true;
                             }
                         }
                     }
@@ -164,9 +174,11 @@ namespace UI.Desktop
 */
             if (emailValido == false)
             {
-//TODO: agregar parámetros                this.Notificar();
+
+                return false;
             }     
-//TODO:   si es todo válido debe llamar retornar true.        
+//TODO:   si es todo válido debe llamar retornar true.
+            return valido;        
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
