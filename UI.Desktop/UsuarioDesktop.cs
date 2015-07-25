@@ -105,28 +105,27 @@ namespace UI.Desktop
         }
         public virtual bool Validar() {
 
-            bool valido;
+            bool valido = false;
 
             if (this.txtID.Text == "" || this.txtApellido.Text == "" || this.txtNombre.Text == "" || this.txtEmail.Text == "" || this.txtUsuario.Text == "" ||
                 this.txtClave.Text == "" || this.txtConfirmarClave.Text == "")
             {
 //TODO: agregar parámetros                this.Notificar();
-                valido = false;
+//                valido = false;
             };
 
             if (this.txtClave.Text.Length < 8)
             {
 //TODO: agregar parámetros                this.Notificar();
-                valido = false;
+//                valido = false;
             }
 
             if(this.txtClave.Text != this.txtConfirmarClave.Text )
             {
 //TODO: agregar parámetros                this.Notificar();
-                valido = false;
+//                valido = false;
             }
 
-            bool emailValido = false;  
             string rgxPattern = "^[^\\r\\n\\t\\f@ ]+(@)\\S(\\.)[a-zA-Z]{3}((\\.)[a-zA-Z]{2})?$" ; 
             Regex rgx = new Regex(rgxPattern, RegexOptions.IgnoreCase);  
             MatchCollection matches;
@@ -142,7 +141,7 @@ namespace UI.Desktop
             else   // email invalido
             {
 //TODO: agregar parámetros                this.Notificar();
-                valido = false;
+//                valido = false;
             }
 
 
@@ -172,12 +171,7 @@ namespace UI.Desktop
                 }
             }
 */
-            if (emailValido == false)
-            {
-
-                return false;
-            }     
-//TODO:   si es todo válido debe llamar retornar true.
+   
             return valido;        
         }
 
@@ -196,28 +190,29 @@ namespace UI.Desktop
             /* "20.También creamos el manejador del evento clic para el botón salir y allí
 utilizamos el método"         no dice nada más */
         }
+    
 
-//TODO: arreglar la siguiente función, "21.Volvemos al Windows Form Usuarios y en el ToolStripButton tbsNuevo
-//      hacemos doble clic para manejar el evento clic." , tbsNuevo no aparece antes, no sé que tiene o hace
 
-        private void tsbNuevo_Click(object sender, EventArgs e)
+        private void tsbNuevo_Click_1(object sender, EventArgs e)
         {
             UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
             formUsuario.ShowDialog();
-//            this.Listar();    
-    
-/* 22.Allí creamos una variable de tipo UsuarioDesktop, la instanciamos
-invocando al constructor con un parámetro y pasanadole el modo alta.
-Luego mostramos el formulario con ShowDialog y a continuación
-refrescamos la grilla llamando al método Listar, para que al finalizar  --> Grilla?!
-la ejecución de la nueva alta si se agregó un usuario este se vea en la
-grilla. El código será similar a este:
- private void tsbNuevo_Click(object sender, EventArgs e)
- {
- UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
- formUsuario.ShowDialog();
- this.Listar();
- }*/
+            this.Listar();  
+        }
+
+        private void Listar()
+        {
+//TODO: Hacer el método Listar, refresca la grilla
+        }
+
+        private void tsbModificar_Click(object sender, EventArgs e)
+        {
+            this.MapearDeDatos();
+        }
+
+        private void tsbEliminar_Click(object sender, EventArgs e)
+        {
+            this.MapearDeDatos();
         }
 
 //TODO:
@@ -233,6 +228,8 @@ this.dgvUsuarios.SelectedRows tenga elementos dentro)
 la grilla en false)
 • Que al hacer clic en una celda se seleccione una fila entera
 (Propiedad SelectionMode de la grilla en FullRowSelect)*/
+
+//TODO: vincular grilla con un List<Usuario> = devolución del getAll()
 
     }
 }

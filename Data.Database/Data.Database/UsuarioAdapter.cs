@@ -101,7 +101,7 @@ namespace Data.Database
             }
 
 //TODO: Agregar un bloque try catch finally en la capa de negocio y lanzarlas
-//      con throw a la capa de presentacion
+//      con throw a la capa de presentacion                                     //UsuarioAdapter?
 //TODO: Agregar un bloque try catch finally en la capa de presentación y las 
 //      informe al usuario usando un MessageBox
 
