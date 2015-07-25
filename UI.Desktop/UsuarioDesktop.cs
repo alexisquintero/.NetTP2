@@ -122,62 +122,51 @@ namespace UI.Desktop
             }
 
             bool emailValido = false;  
-            string rgxPattern = "\\S+" ; //texto sin espacios y con por lo menos 1 caracter
+            string rgxPattern = "^[^\\r\\n\\t\\f@ ]+(@)\\S(\\.)[a-zA-Z]{3}((\\.)[a-zA-Z]{2})?$" ; 
             Regex rgx = new Regex(rgxPattern, RegexOptions.IgnoreCase);  
             MatchCollection matches;
             string[] cadenas = this.txtEmail.Text.Split('@');
 
-            if (cadenas.Length == 2)  // 1 solo @
+//Método 1, con regex
+
+            matches = rgx.Matches(this.txtEmail.Text);
+            if (matches.Count == 1)
             {
-                matches = rgx.Matches(cadenas[0]); // regex antes del @
-                if(matches.Count !=0)
+                emailValido = true;
+            }
+
+
+ //Método 2, sin regex
+ /*           if (cadenas.Length == 2)  // 1 solo @
+            {
+                if(cadenas[0].Length > 0)  // no empieza con @
                 {
                     cadenas = cadenas[1].Split('.');
                     if(cadenas.Length == 2)  // 1 punto despues del @
                     {
                         if(cadenas[1].Length == 3)  // 3 caracteres despues del punto; .com, .edu, etc.
                         {
-                            matches = rgx.Matches(cadenas[1]);
-
-                            if (matches.Count != 0)  // regex despues del .
-                            {
-                                emailValido = true;
-                            }
+                            emailValido = true;
                         }
                     }
                     if(cadenas.Length == 3)  // 2 puntos despues del @
                     {
                         if (cadenas[1].Length == 3)  // 3 caracteres despues del primer punto; .com, .edu, etc.
                         {
-                            matches = rgx.Matches(cadenas[1]);
-
-                            if (matches.Count != 0)  // regex despues del primer .
+                            if (cadenas[2].Length == 2)  // 2 caracteres despues del segundo punto; .ar, .it, etc.
                             {
-                                if (cadenas[2].Length == 2)  // 2 caracteres despues del segundo punto; .ar, .it, etc.
-                                {
-                                    matches = rgx.Matches(cadenas[2]);
-
-                                    if (matches.Count != 0)  // regex despues del segundo .
-                                    {
-                                        emailValido = true;
-                                    }
-                                }
-
+                                emailValido = true;
                             }
                         }
                     }
                 }
-
-
             }
-
+*/
             if (emailValido == false)
             {
 //TODO: agregar parámetros                this.Notificar();
-            }
-        
-//TODO:   si es todo válido debe llamar retornar true.
-        
+            }     
+//TODO:   si es todo válido debe llamar retornar true.        
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
