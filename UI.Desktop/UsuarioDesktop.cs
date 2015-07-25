@@ -25,7 +25,7 @@ namespace UI.Desktop
         public UsuarioDesktop(ModoForm modo)
             : this()
         {
-            //Internamete debe setear a ModoForm en el modo enviado, este constructor servirá para las altas.
+//TODO:            Internamete debe setear a ModoForm en el modo enviado, este constructor servirá para las altas.
         }
 
         public UsuarioDesktop(int ID, ModoForm modo)
