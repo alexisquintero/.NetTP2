@@ -25,7 +25,8 @@ namespace UI.Desktop
         public UsuarioDesktop(ModoForm modo)
             : this()
         {
-//TODO:            Internamete debe setear a ModoForm en el modo enviado, este constructor servirá para las altas.
+
+            this.modo = modo;
         }
 
         public UsuarioDesktop(int ID, ModoForm modo)
@@ -38,7 +39,8 @@ namespace UI.Desktop
             this.MapearDeDatos();
         }
 
-        public virtual void MapearDeDatos() {
+        public override void MapearDeDatos()
+        {
 
             // txtClave, txtConfirmarClave
             this.txtID.Text = this.UsuarioActual.ID.ToString();
@@ -49,22 +51,15 @@ namespace UI.Desktop
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
 //            this.txtClave.Text = "******";
 
-            //Dentro del mismo método setearemos el texto del botón Aceptar en función del Modo del formulario de esta forma 
-            //Alta o Modificación Guardar 
-            //Baja Eliminar 
-            //Consulta Aceptar
-
-//TODO: Arreglar función con enum.
-            int i = 5;
-            switch( i)
+            switch(this.modo)
             {
-                case 0:
+                case ModoForm.Alta:
                     this.btnAceptar.Name = "Guardar";
                     break;
-                case 1:
+                case ModoForm.Baja:
                     this.btnAceptar.Name = "Eliminar";
                     break;
-                case 2:
+                case ModoForm.Modificaion:
                     this.btnAceptar.Name = "Guardar";
                     break;
                 default:
@@ -73,16 +68,16 @@ namespace UI.Desktop
             }
         
         }
-        public virtual void MapearADatos() {
+        public override void MapearADatos() {
 
-//TODO: arreglar, enum            if(Modo del formulario es Alta){
+           
+            if(modo == ModoForm.Alta){
                 UsuarioActual = new Usuario();
-//TODO: getid de algun lado, método de clase?                UsuarioActual.ID = 0; 
-//            }
-
-//TODO: arreglar, enum            if(Modo del formulario es Alta){
+            }
+           
+            if(modo != ModoForm.Alta){
                 UsuarioActual.ID = int.Parse(this.txtID.Text);
-//            }
+            }
 
             this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;
             this.UsuarioActual.Nombre = this.txtNombre.Text;
@@ -90,11 +85,26 @@ namespace UI.Desktop
             this.UsuarioActual.Email = this.txtEmail.Text;
             this.UsuarioActual.NombreUsuario = this.txtUsuario.Text;
 
-//TODO: arreglar, enum            this.UsuarioActual.State = ModoForm;
+            switch(this.modo)
+            {
+                case ModoForm.Alta:
+                    this.UsuarioActual.State = BusinessEntity.States.New;
+                    break;
+                case ModoForm.Baja:
+                    this.UsuarioActual.State = BusinessEntity.States.Deleted;
+                    break;
+                case ModoForm.Modificaion:
+                    this.UsuarioActual.State = BusinessEntity.States.Modified;
+                    break;
+                case ModoForm.Consulta:
+                    this.UsuarioActual.State = BusinessEntity.States.Unmodified;
+                    break;
+            }
 
         
         }
-        public virtual void GuardarCambios() {
+        public override void GuardarCambios()
+        {
 
             MapearADatos();
 
@@ -103,27 +113,28 @@ namespace UI.Desktop
             uL.Save(UsuarioActual);
         
         }
-        public virtual bool Validar() {
+        public override bool Validar()
+        {
 
             bool valido = false;
 
             if (this.txtID.Text == "" || this.txtApellido.Text == "" || this.txtNombre.Text == "" || this.txtEmail.Text == "" || this.txtUsuario.Text == "" ||
                 this.txtClave.Text == "" || this.txtConfirmarClave.Text == "")
             {
-//TODO: agregar parámetros                this.Notificar();
-//                valido = false;
+                this.Notificar("Existen uno o más campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valido = false;
             };
 
             if (this.txtClave.Text.Length < 8)
             {
-//TODO: agregar parámetros                this.Notificar();
-//                valido = false;
+                this.Notificar("La contraseña debe tener por lo menos 8 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valido = false;
             }
 
-            if(this.txtClave.Text != this.txtConfirmarClave.Text )
+            if (this.txtClave.Text != this.txtConfirmarClave.Text)
             {
-//TODO: agregar parámetros                this.Notificar();
-//                valido = false;
+                this.Notificar("Las claves son distintas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valido = false;
             }
 
             string rgxPattern = "^[^\\r\\n\\t\\f@ ]+(@)\\S(\\.)[a-zA-Z]{3}((\\.)[a-zA-Z]{2})?$" ; 
@@ -140,8 +151,8 @@ namespace UI.Desktop
             }
             else   // email invalido
             {
-//TODO: agregar parámetros                this.Notificar();
-//                valido = false;
+                this.Notificar("Email inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valido = false;
             }
 
 
@@ -200,36 +211,50 @@ utilizamos el método"         no dice nada más */
             this.Listar();  
         }
 
-        private void Listar()
+        private void Listar() 
         {
-//TODO: Hacer el método Listar, refresca la grilla
+            UsuarioLogic ul = new UsuarioLogic();
+
+            try
+            {
+                this.dgvUsuarios.DataSource = ul.GetAll();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
+
         }
 
         private void tsbModificar_Click(object sender, EventArgs e)
         {
-            this.MapearDeDatos();
+            if (this.dgvUsuarios.SelectedRows.Count == 1)
+            {
+                int ID = ((Business.Entities.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ModoForm.Modificaion);
+                this.MapearDeDatos();
+                this.Listar();
+            }
+            else
+            {
+                this.Notificar("Ningún elemento seleccionado", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            this.MapearDeDatos();
+            if (this.dgvUsuarios.SelectedRows.Count == 1)
+            {
+                int ID = ((Business.Entities.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ModoForm.Baja);
+                this.MapearDeDatos();
+                this.Listar();
+            }
+            else
+            {
+                this.Notificar("Ningún elemento seleccionado", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+            }
+            
         }
-
-//TODO:
-/*24.De manera similar llamar al Formulario crear los manejadores de eventos
-para el Editar y el Eliminar. Utilizando el constructor de
-UsuarioDesktop que requiere enviar el ID y el Modo
-Para obtener el ID podemos hacerlo de la siguiente forma
-int ID = ((Business.Entities.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-Para poder utilizar dicha línea de código debemos:
-• Asegurarnos que haya una fila seleccionada (controlando que
-this.dgvUsuarios.SelectedRows tenga elementos dentro)
-• Permitir que se selecciones una única fila (Propiedad MultiSelect de
-la grilla en false)
-• Que al hacer clic en una celda se seleccione una fila entera
-(Propiedad SelectionMode de la grilla en FullRowSelect)*/
-
-//TODO: vincular grilla con un List<Usuario> = devolución del getAll()
-
     }
 }

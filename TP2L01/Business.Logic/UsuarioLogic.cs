@@ -10,18 +10,41 @@ namespace Business.Logic
 {
     public class UsuarioLogic : BusinessLogic 
     {
-        private UsuarioAdapter UsuarioData { get; set; } 
+        private UsuarioAdapter UsuarioData { get; set; }
 
         public UsuarioLogic()
         {
-          UsuarioData = new UsuarioAdapter();
+            UsuarioData = new UsuarioAdapter();
         }
-        public Usuario GetOne(int id) {
-            return UsuarioData.GetOne(id);
+        public Usuario GetOne(int id)
+        {
+
+            try
+            {
+                return UsuarioData.GetOne(id);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+
+//            return null;
+
         }
-        public List<Usuario> GetAll() {
-            
-            return UsuarioData.GetAll();
+        public List<Usuario> GetAll()
+        {
+
+            try
+            {
+                return UsuarioData.GetAll();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+
+//            return null;
+
         }
         public void Save(Usuario u1) {
         UsuarioData.Save(u1); }
