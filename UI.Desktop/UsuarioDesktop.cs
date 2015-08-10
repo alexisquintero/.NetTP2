@@ -26,7 +26,8 @@ namespace UI.Desktop
             : this()
         {
 
-            this.modo = modo;
+            this.modo = modo;
+            this.renombrarBotones();
         }
 
         public UsuarioDesktop(int ID, ModoForm modo)
@@ -36,7 +37,8 @@ namespace UI.Desktop
             //utilizamos el método GetOne para recuperar la entidad Usuario. Entonces la asignamos a la propiedad UsuarioActual e invocaremos al método
             //MapearDeDatos.            UsuarioLogic ul = new UsuarioLogic();
             UsuarioActual = ul.GetOne(ID);
-            this.MapearDeDatos();
+            this.MapearDeDatos();
+            this.renombrarBotones();
         }
 
         public override void MapearDeDatos()
@@ -50,22 +52,6 @@ namespace UI.Desktop
             this.txtEmail.Text = this.UsuarioActual.Email;
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
 //            this.txtClave.Text = "******";
-
-            switch(this.modo)
-            {
-                case ModoForm.Alta:
-                    this.btnAceptar.Name = "Guardar";
-                    break;
-                case ModoForm.Baja:
-                    this.btnAceptar.Name = "Eliminar";
-                    break;
-                case ModoForm.Modificaion:
-                    this.btnAceptar.Name = "Guardar";
-                    break;
-                default:
-                    //this.btnAceptar.Name = "Aceptar";
-                    break;
-            }
         
         }
         public override void MapearADatos() {
@@ -136,13 +122,13 @@ namespace UI.Desktop
                 this.Notificar("Las claves son distintas", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 valido = false;
             }
-
+/*
             string rgxPattern = "^[^\\r\\n\\t\\f@ ]+(@)\\S(\\.)[a-zA-Z]{3}((\\.)[a-zA-Z]{2})?$" ; 
             Regex rgx = new Regex(rgxPattern, RegexOptions.IgnoreCase);  
             MatchCollection matches;
             string[] cadenas = this.txtEmail.Text.Split('@');
 
-//Método 1, con regex
+//Método 1, con regex 
 
             matches = rgx.Matches(this.txtEmail.Text);
             if (matches.Count == 1)
@@ -155,7 +141,7 @@ namespace UI.Desktop
                 valido = false;
             }
 
-
+*/
  //Método 2, sin regex
  /*           if (cadenas.Length == 2)  // 1 solo @
             {
@@ -208,7 +194,8 @@ utilizamos el método"         no dice nada más */
         {
             UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
             formUsuario.ShowDialog();
-            this.Listar();  
+            this.Listar();
+            this.txtID.Enabled = true;
         }
 
         private void Listar() 
@@ -255,6 +242,24 @@ utilizamos el método"         no dice nada más */
                 this.Notificar("Ningún elemento seleccionado", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void renombrarBotones(){
+            switch (this.modo)
+            {
+                case ModoForm.Alta:
+                    this.btnAceptar.Name = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    this.btnAceptar.Name = "Eliminar";
+                    break;
+                case ModoForm.Modificaion:
+                    this.btnAceptar.Name = "Guardar";
+                    break;
+                default:
+                    //this.btnAceptar.Name = "Aceptar";
+                    break;
+            }
         }
     }
 }
