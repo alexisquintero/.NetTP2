@@ -13,7 +13,7 @@ namespace Data.Database
 
         protected void OpenConnection()
         {
-            String conn = ConfigurationManager.ConnectionStrings[consKeyDefaultCnnString].ConnectionString;
+            String conn = ConfigurationManager.ConnectionStrings[consKeyDefaultCnnString].ConnectionString;           
             sqlConn = new SqlConnection(conn);
             sqlConn.Open();
 //            throw new Exception("Metodo no implementado");

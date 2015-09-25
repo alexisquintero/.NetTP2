@@ -148,7 +148,7 @@ namespace UI.Consola
                Console.WriteLine();
                Console.WriteLine(e.Message);
            }
-           finally
+          finally
            {
                Console.WriteLine("Presione una tecla para continuar");
                Console.ReadKey();

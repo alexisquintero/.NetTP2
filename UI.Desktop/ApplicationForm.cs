@@ -21,7 +21,7 @@ namespace UI.Desktop
         {
             Alta,
             Baja,
-            Modificaion,
+            Modificacion,
             Consulta,
         };
 
